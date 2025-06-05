@@ -2,8 +2,11 @@ name: Build Bigdroid Project
 
 on:
   push:
+    branches:
+      - '*'      # Trigger on push to any branch
     tags:
-      - '*'  # Run on any new tag
+      - '*'      # Trigger on push of any tag
+  workflow_dispatch:   # Allow manual trigger from the GitHub UI
 
 jobs:
   publish_release:
@@ -12,9 +15,9 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3  # Use latest stable version
+        uses: actions/checkout@v3
 
       - name: Run Bigdroid Builder
-        uses: bigdroid/action-build@main  # Replace 'main' if HEAD doesn't exist
+        uses: bigdroid/action-build@main  # Replace 'main' with the correct branch or tag if needed
         env:
           API_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
