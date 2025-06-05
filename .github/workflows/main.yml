@@ -3,17 +3,18 @@ name: Build Bigdroid Project
 on:
   push:
     tags:
-      - '*'
-  #workflow_dispatch:
+      - '*'  # Run on any new tag
 
 jobs:
   publish_release:
-    runs-on: ubuntu-latest
     name: Building Bigdroid project
-    steps:
-      - uses: actions/checkout@v2
+    runs-on: ubuntu-latest
 
-      - id: bigdroid-build
-        uses: bigdroid/action-build@HEAD
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Use latest stable version
+
+      - name: Run Bigdroid Builder
+        uses: bigdroid/action-build@main  # Replace 'main' if HEAD doesn't exist
         env:
           API_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
