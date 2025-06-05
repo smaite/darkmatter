@@ -12,9 +12,8 @@ jobs:
     name: Building Bigdroid project
     steps:
       - uses: actions/checkout@v2
-      
+
       - id: bigdroid-build
-#         uses: lhotari/action-upterm@v1
         uses: bigdroid/action-build@HEAD
         env:
-            API_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          API_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
